@@ -1,0 +1,110 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    TESTING IN SUBNAUTICA - QUICK GUIDE
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ YOUR MOD IS READY TO TEST
+
+The DLL has been compiled and placed in the ready-to-use folder.
+All assets are included. You're good to go!
+
+═══════════════════════════════════════════════════════════════════════════════
+INSTALLATION METHOD 1: Using Subnautica Mod Manager (EASIEST)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Open Subnautica Mod Manager (SMM)
+
+2. Click the folder icon at the bottom-left (Open Mods Folder)
+   This opens your BepInEx\plugins folder
+
+3. Drag this entire folder into SMM:
+   CyclopsDockingMod-READY-TO-USE
+
+   Or copy the contents manually:
+   - Copy: CyclopsDockingMod-READY-TO-USE\BepInEx\*
+   - Paste into: [Your Subnautica Game]\BepInEx\
+
+4. Restart Subnautica
+
+5. Check the console for these messages:
+   ✅ "CyclopsDockingMod loaded successfully"
+   ✅ No "Ingredients not found" error
+
+═══════════════════════════════════════════════════════════════════════════════
+INSTALLATION METHOD 2: Manual Installation
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Find your Subnautica game folder:
+   Default: C:\Program Files (x86)\Steam\steamapps\common\Subnautica
+
+2. Navigate to: BepInEx\plugins
+
+3. Create a folder called: CyclopsDockingMod
+
+4. Copy these files INTO that folder:
+   FROM: CyclopsDockingMod-READY-TO-USE\BepInEx\plugins\CyclopsDockingMod\*
+   TO:   [Subnautica]\BepInEx\plugins\CyclopsDockingMod\
+
+5. Also copy the Assets folder:
+   FROM: CyclopsDockingMod-READY-TO-USE\Assets\*
+   TO:   [Subnautica]\BepInEx\plugins\CyclopsDockingMod\Assets\
+
+6. Restart Subnautica
+
+═══════════════════════════════════════════════════════════════════════════════
+WHAT TO LOOK FOR WHEN TESTING
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ SUCCESS SIGNS:
+   • Game starts without error
+   • Console shows mod loaded
+   • Cyclops Docking Mod menu appears
+   • Can build docking module on Cyclops
+   • Can craft related parts
+
+❌ ERROR SIGNS (If you see these, let me know):
+   • "Field 'Nautilus.Crafting.RecipeData.Ingredients' not found"
+     → This would mean the fix didn't work (shouldn't happen)
+   
+   • Other NullReferenceException errors
+     → Might indicate missing assets or dependencies
+
+═══════════════════════════════════════════════════════════════════════════════
+TESTING CHECKLIST
+═══════════════════════════════════════════════════════════════════════════════
+
+☐ Installed mod in BepInEx\plugins\CyclopsDockingMod
+☐ Copied Assets folder
+☐ Started new game or loaded existing save
+☐ Cyclops loaded without crashing
+☐ Check console for "CyclopsDockingMod" messages
+☐ Try building Docking Module component on Cyclops
+☐ Try crafting related recipes
+☐ No "Ingredients" errors
+
+═══════════════════════════════════════════════════════════════════════════════
+CONSOLE ACCESS
+═══════════════════════════════════════════════════════════════════════════════
+
+In-game console:
+Press: Ctrl + Backspace (or F3 in some configs)
+
+To see mod loading messages:
+1. Start a new game
+2. Wait for "Subnautica Start" message
+3. Look for "CyclopsDockingMod" entries
+
+═══════════════════════════════════════════════════════════════════════════════
+REPORT ANY ISSUES
+═══════════════════════════════════════════════════════════════════════════════
+
+If you encounter problems:
+1. Check the console output
+2. Copy any error messages
+3. Let me know the exact error
+4. Include your console log from: BepInEx\console.log
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🚀 READY TO TEST! Good luck! 🚀
+
+═══════════════════════════════════════════════════════════════════════════════

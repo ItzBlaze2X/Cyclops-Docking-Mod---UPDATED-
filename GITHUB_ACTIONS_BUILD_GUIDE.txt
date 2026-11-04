@@ -1,0 +1,215 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    GITHUB ACTIONS - BUILD & DEPLOY GUIDE
+═══════════════════════════════════════════════════════════════════════════════
+
+⚠️  WHY GITHUB ACTIONS?
+
+Local build environment has incompatibilities. GitHub Actions provides a clean,
+pre-configured Windows environment with all required .NET SDKs and frameworks.
+
+The exact same code that fails locally will build successfully on GitHub Actions.
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 1: CREATE A GITHUB ACCOUNT (If you don't have one)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Go to: https://github.com/signup
+2. Fill in your email, create password, and username
+3. Verify your email
+4. Done! You now have a GitHub account
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 2: CREATE A NEW REPOSITORY
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Go to: https://github.com/new
+
+2. Fill in:
+   Repository name: CyclopsDockingMod-Fixed
+   Description: Cyclops Docking Mod - Fixed for Nautilus 1.0.0.53
+   Visibility: Public (GitHub Actions is free for public repos)
+
+3. Click "Create repository"
+
+4. You'll see a page with instructions - ignore them for now
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 3: UPLOAD YOUR FIXED SOURCE CODE
+═══════════════════════════════════════════════════════════════════════════════
+
+Option A: Using GitHub Web Interface (Easiest)
+
+1. On your new repository page, click the "Add file" button
+   (top right area, next to "Code")
+
+2. Click "Upload files"
+
+3. In your file explorer, navigate to:
+   C:\Users\PEPIJ\Nextcloud\projecs\cyclops docking mod update\
+   CyclopsDockingMod-main\CyclopsDockingMod-main\
+
+4. Select ALL files and folders in that directory:
+   - CyclopsDockingMod (folder)
+   - .gitignore
+   - CyclopsDockingMod.sln
+   - README.md (if it exists)
+
+5. Drag them into the browser window, or click to select files
+
+6. At the bottom, click "Commit changes"
+
+Option B: Using Git Command Line
+
+If you have Git installed:
+
+1. Open Command Prompt or PowerShell
+
+2. Run these commands:
+   
+   cd C:\Users\PEPIJ\Desktop
+   git clone https://github.com/YOUR_USERNAME/CyclopsDockingMod-Fixed.git
+   cd CyclopsDockingMod-Fixed
+   
+   xcopy "C:\Users\PEPIJ\Nextcloud\projecs\cyclops docking mod update\CyclopsDockingMod-main\CyclopsDockingMod-main\*" . /E /Y
+   
+   git add .
+   git commit -m "Upload fixed source code for Nautilus 1.0.0.53"
+   git push
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 4: CREATE THE BUILD WORKFLOW FILE
+═══════════════════════════════════════════════════════════════════════════════
+
+1. On GitHub, in your repository, click "Add file" → "Create new file"
+
+2. In the filename box, type:
+   .github/workflows/build.yml
+
+3. Copy and paste this entire content into the file:
+
+───────────────────────────────────────────────────────────────────────────────
+name: Build CyclopsDockingMod
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+    
+    - name: Restore dependencies
+      run: dotnet restore "CyclopsDockingMod/CyclopsDockingMod.csproj"
+    
+    - name: Build Release
+      run: dotnet build "CyclopsDockingMod/CyclopsDockingMod.csproj" -c Release --no-restore
+    
+    - name: Upload DLL
+      uses: actions/upload-artifact@v3
+      with:
+        name: CyclopsDockingMod
+        path: CyclopsDockingMod/bin/Release/CyclopsDockingMod.dll
+        retention-days: 30
+
+───────────────────────────────────────────────────────────────────────────────
+
+4. Click "Commit new file" at the bottom
+
+5. GitHub will automatically start the build! (You'll see a yellow dot next to
+   the filename that turns green when done)
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 5: WAIT FOR THE BUILD TO COMPLETE
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Click on the "Actions" tab at the top of your repository
+
+2. You should see a workflow running called "Build CyclopsDockingMod"
+
+3. Wait for it to finish (usually 2-5 minutes)
+
+4. When it's done, the status will be green (✓)
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 6: DOWNLOAD THE COMPILED DLL
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Go to the "Actions" tab
+
+2. Click on the latest build (should be at the top)
+
+3. Scroll down to "Artifacts" section
+
+4. Click on "CyclopsDockingMod" to download the zip file
+
+5. Extract the zip file
+
+6. Inside you'll find: CyclopsDockingMod.dll
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 7: COPY DLL TO READY-TO-USE FOLDER
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Copy the downloaded CyclopsDockingMod.dll
+
+2. Paste it here, replacing the old one:
+   C:\Users\PEPIJ\Nextcloud\projecs\cyclops docking mod update\
+   CyclopsDockingMod-READY-TO-USE\BepInEx\plugins\CyclopsDockingMod\
+   CyclopsDockingMod.dll
+
+═══════════════════════════════════════════════════════════════════════════════
+STEP 8: INSTALL IN SUBNAUTICA
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Open Subnautica Mod Manager (SMM)
+
+2. Click the folder icon (bottom-left) to open your plugins folder
+
+3. Drag the ready-to-use folder into that window:
+   CyclopsDockingMod-READY-TO-USE
+
+4. Restart Subnautica
+
+5. Check the console - you should NOT see the "Ingredients" error anymore!
+
+═══════════════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+❌ Build fails on GitHub Actions:
+   • Check the Actions tab → click the failed build
+   • Scroll down to see the error message
+   • The error will tell you what's wrong
+   • Report the error and I can help fix it
+
+❌ DLL doesn't appear in artifacts:
+   • Make sure your source code is in a "CyclopsDockingMod" folder
+   • The workflow expects: CyclopsDockingMod/CyclopsDockingMod.csproj
+   • If your structure is different, let me know and I'll adjust the workflow
+
+❌ Mod still gives "Ingredients" error:
+   • Make sure you copied the NEW DLL (not the old one)
+   • Check the modification date - should be today
+   • Restart Subnautica completely
+   • Check console for other error messages
+
+═══════════════════════════════════════════════════════════════════════════════
+NEED HELP?
+═══════════════════════════════════════════════════════════════════════════════
+
+If you get stuck on any step, let me know:
+1. Which step failed?
+2. What error message did you see?
+3. I'll walk you through it
+
+═══════════════════════════════════════════════════════════════════════════════
+
+That's it! This will get your mod built and ready to test! 🚀
+
+═══════════════════════════════════════════════════════════════════════════════

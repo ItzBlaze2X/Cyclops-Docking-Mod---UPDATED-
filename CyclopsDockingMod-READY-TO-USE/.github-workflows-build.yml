@@ -1,0 +1,28 @@
+name: Build CyclopsDockingMod
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+    
+    - name: Restore dependencies
+      run: dotnet restore "CyclopsDockingMod/CyclopsDockingMod.csproj"
+    
+    - name: Build Release
+      run: dotnet build "CyclopsDockingMod/CyclopsDockingMod.csproj" -c Release --no-restore
+    
+    - name: Upload DLL
+      uses: actions/upload-artifact@v3
+      with:
+        name: CyclopsDockingMod
+        path: CyclopsDockingMod/bin/Release/CyclopsDockingMod.dll
+        retention-days: 30

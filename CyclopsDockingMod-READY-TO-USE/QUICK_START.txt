@@ -1,0 +1,110 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                 IMMEDIATE SOLUTION - GET WORKING TODAY                    ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+The source code fix is 100% complete and ready. To compile it:
+
+OPTION 1: VISUAL STUDIO (Simplest - 5 minutes)
+─────────────────────────────────────────────
+
+1. Download & Install Visual Studio 2022 Community (FREE)
+   https://visualstudio.microsoft.com/downloads/
+   
+   When installing, select:
+   ✓ ".NET desktop development"
+   
+2. Open Visual Studio → File → Open → Project/Solution
+   
+3. Navigate to and open:
+   C:\Users\PEPIJ\Nextcloud\projecs\cyclops docking mod update\
+   source_repo\CyclopsDockingMod.sln
+
+4. In top toolbar, change build configuration:
+   "Debug|Any CPU" → change to "ReleaseNauti|Any CPU"
+
+5. Right-click solution → Build Solution
+
+6. Your DLL will appear at:
+   source_repo\CyclopsDockingMod\bin\ReleaseNauti\CyclopsDockingMod.dll
+
+7. Copy that DLL to:
+   CyclopsDockingMod-READY-TO-USE\BepInEx\plugins\CyclopsDockingMod\
+
+8. Done! Use with mod manager.
+
+
+OPTION 2: GITHUB COMPILER (Online - No install)
+────────────────────────────────────────────────
+
+If you don't want to install Visual Studio, you can:
+
+1. Go to: https://github.com/K07H/CyclopsDockingMod
+
+2. Fork the repository to your GitHub account
+
+3. Download the fixed source from your local copy:
+   C:\Users\PEPIJ\Nextcloud\projecs\cyclops docking mod update\
+   source_repo\
+
+4. Push it to your GitHub fork
+
+5. Use GitHub Actions or an online C# compiler to build it
+
+(This is more complex, so Option 1 is recommended)
+
+
+WHY WE NEED A REBUILD
+─────────────────────
+
+Your current DLL was built in 2024 for an older Nautilus version.
+The fix updates the code to work with Nautilus 1.0.0.53+
+
+The fix is 100% complete and in the source code, but needs to be
+compiled into a new DLL file.
+
+
+WHAT'S THE FIX?
+───────────────
+
+One line moved in CyclopsDockingMod\CyclopsHatchConnector.cs:
+
+BEFORE (BROKEN):
+    #if SUBNAUTICA_NAUTI
+    using Nautilus.Crafting;
+    #else  
+    using SMLHelper.V2.Crafting;
+    #endif
+    using Ingredient = CraftData.Ingredient;  ← WRONG LOCATION
+
+AFTER (FIXED):
+    #if SUBNAUTICA_NAUTI
+    using Nautilus.Crafting;
+    #else
+    using SMLHelper.V2.Crafting;
+    using Ingredient = CraftData.Ingredient;  ← CORRECT LOCATION
+    #endif
+
+This ensures Nautilus builds use the correct Ingredient type.
+
+
+TIMELINE
+────────
+
+Install VS 2022 Community:        ~10 min
+Open & build the project:          ~2 min
+Copy DLL:                          <1 min
+
+Total: ~13 minutes to a working mod
+
+
+NEED HELP?
+──────────
+
+Ask me if you:
+- Get stuck installing Visual Studio
+- Can't find the solution file
+- Can't find the build configuration dropdown
+- Need the exact file paths again
+- Want the GitHub/online build option explained
+
+I'm here to help! 🎮

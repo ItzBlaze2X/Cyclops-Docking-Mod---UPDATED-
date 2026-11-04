@@ -1,0 +1,33 @@
+.github/workflows/build.yml
+
+name: Build CyclopsDockingMod (Nautilus Fix)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.x'
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build ReleaseNauti
+      run: dotnet build -c ReleaseNauti --no-restore
+    
+    - name: Upload DLL artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: CyclopsDockingMod-Nautilus-Fixed
+        path: CyclopsDockingMod/bin/Release*/CyclopsDockingMod.dll

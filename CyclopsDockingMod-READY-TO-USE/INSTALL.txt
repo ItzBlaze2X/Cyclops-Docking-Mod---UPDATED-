@@ -1,0 +1,91 @@
+═══════════════════════════════════════════════════════════════════
+  CYCLOPS DOCKING MOD - FIXED FOR NAUTILUS 1.0.0.53+
+  Ready to Drop-In Installation
+═══════════════════════════════════════════════════════════════════
+
+THIS FOLDER IS READY TO USE WITH:
+  • Subnautica Mod Manager (SMM)
+  • BepInEx
+  • Any mod loader
+
+═══════════════════════════════════════════════════════════════════
+INSTALLATION - SUBNAUTICA MOD MANAGER (SMM)
+═══════════════════════════════════════════════════════════════════
+
+1. Open Subnautica Mod Manager
+2. Click "Install Mod" (top toolbar)
+3. Select "Install mod from folder"
+4. Navigate to: CyclopsDockingMod-READY-TO-USE
+5. SMM will auto-detect and install
+6. Enable the mod (check the box)
+7. Click "Apply" or "Save"
+8. Launch Subnautica!
+
+═══════════════════════════════════════════════════════════════════
+MANUAL INSTALLATION (BepInEx)
+═══════════════════════════════════════════════════════════════════
+
+If installing manually:
+
+1. Navigate to your Subnautica folder:
+   C:\Program Files (x86)\Steam\steamapps\common\Subnautica\
+
+2. Copy the "BepInEx" folder from this directory into your 
+   Subnautica installation (merge with existing folder)
+
+3. Copy the "Assets" folder into your Subnautica installation root
+
+4. Launch Subnautica - the mod will load automatically
+
+═══════════════════════════════════════════════════════════════════
+REQUIREMENTS
+═══════════════════════════════════════════════════════════════════
+
+✓ Nautilus 1.0.0.53 or newer (REQUIRED)
+  Make sure you have: BepInEx/plugins/Nautilus/
+
+✓ BepInEx (installed by mod loader)
+
+✓ Subnautica (up to date)
+
+═══════════════════════════════════════════════════════════════════
+WHAT'S FIXED
+═══════════════════════════════════════════════════════════════════
+
+ERROR FIXED:
+  "Field 'Nautilus.Crafting.RecipeData.Ingredients' not found"
+
+This version is compiled and tested for:
+  ✓ Nautilus 1.0.0.53+
+  ✓ Current Subnautica versions
+  ✓ BepInEx 5.4.x+
+
+═══════════════════════════════════════════════════════════════════
+VERIFICATION
+═══════════════════════════════════════════════════════════════════
+
+After launching Subnautica:
+
+✓ No errors in BepInEx console
+✓ Cyclops Docking menu appears
+✓ Workbench functions normally
+✓ No crashes
+
+═══════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════
+
+Problem: "Mod won't load"
+Solution: Make sure Nautilus 1.0.0.53+ is installed
+
+Problem: "Still getting Ingredients error"
+Solution: You're using the OLD mod version. Use this folder!
+
+Problem: "Mod doesn't appear in menu"
+Solution: Restart Subnautica completely, not just a quick reload
+
+═══════════════════════════════════════════════════════════════════
+
+Ready to use! Just drop it into your mod manager or Subnautica folder.
+
+═══════════════════════════════════════════════════════════════════
