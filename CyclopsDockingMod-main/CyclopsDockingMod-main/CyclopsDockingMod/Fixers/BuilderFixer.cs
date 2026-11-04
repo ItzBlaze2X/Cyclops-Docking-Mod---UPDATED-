@@ -114,7 +114,10 @@ namespace CyclopsDockingMod.Fixers
 				for (int i = 0; i < componentsInChildren.Length; i++)
 					UnityEngine.Object.Destroy(componentsInChildren[i]);
 				BuilderFixer._renderers.SetValue(null, MaterialExtensions.AssignMaterial((GameObject)BuilderFixer._ghostModel.GetValue(null), (Material)BuilderFixer._ghostStructureMaterial.GetValue(null), true));
-				string poweredPrefabName = CraftData.GetPoweredPrefabName((TechType)BuilderFixer._constructableTechType.GetValue(null));
+				MethodInfo getPoweredPrefabName = typeof(CraftData).GetMethod("GetPoweredPrefabName", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic, null, new[] { typeof(TechType) }, null);
+				string poweredPrefabName = getPoweredPrefabName == null
+					? null
+					: getPoweredPrefabName.Invoke(null, new[] { BuilderFixer._constructableTechType.GetValue(null) }) as string;
 				if (!string.IsNullOrEmpty(poweredPrefabName))
 				{
 					CoroutineHost.StartCoroutine((IEnumerator)BuilderFixer._CreatePowerPreviewAsync.Invoke(null, new object[]

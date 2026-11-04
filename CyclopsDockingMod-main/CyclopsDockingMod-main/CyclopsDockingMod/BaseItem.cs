@@ -20,11 +20,6 @@ namespace CyclopsDockingMod
         }
 
         [SetsRequiredMembers]
-        public BaseItem(string classID, string name, string desc, Atlas.Sprite icon) : this(PrefabInfo.WithTechType(classID, name, desc, unlockAtStart: true).WithFileName(DefaultResourcePath + classID).WithIcon(icon))
-        {
-        }
-
-        [SetsRequiredMembers]
         protected BaseItem(PrefabInfo info) : base(info)
         {
             SetGameObject(GetGameObject);

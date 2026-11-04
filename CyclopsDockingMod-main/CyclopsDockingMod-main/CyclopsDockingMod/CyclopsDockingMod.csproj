@@ -30,7 +30,7 @@
     <DefineConstants>TRACE;DEBUG;SUBNAUTICA;SUBNAUTICA_EXP;DEBUG_CURSOR_LOCK;DEBUG_AUTOPILOT_CLICK;DEBUG_CYCLOPS_HUD</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir Condition="'$(SubnauticaDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugNauti|AnyCPU'">
@@ -41,7 +41,7 @@
     <DefineConstants>TRACE;DEBUG;SUBNAUTICA;SUBNAUTICA_EXP;SUBNAUTICA_NAUTI;DEBUG_CURSOR_LOCK;DEBUG_AUTOPILOT_CLICK;DEBUG_CYCLOPS_HUD</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir Condition="'$(SubnauticaDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugLegacy|AnyCPU'">
@@ -52,7 +52,7 @@
     <DefineConstants>TRACE;DEBUG;SUBNAUTICA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir Condition="'$(SubnauticaDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -62,7 +62,7 @@
     <DefineConstants>SUBNAUTICA;SUBNAUTICA_EXP;DEBUG_BEPINEX_CONFIG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
-    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir Condition="'$(SubnauticaDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNauti|AnyCPU'">
@@ -72,7 +72,7 @@
     <DefineConstants>SUBNAUTICA;SUBNAUTICA_EXP;SUBNAUTICA_NAUTI;DEBUG_BEPINEX_CONFIG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
-    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir Condition="'$(SubnauticaDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseLegacy|AnyCPU'">
@@ -82,7 +82,7 @@
     <DefineConstants>SUBNAUTICA</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>2</WarningLevel>
-    <SubnauticaDir>C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaDir Condition="'$(SubnauticaDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
     <Dependencies>$(SubnauticaDir)\Subnautica_Data\Managed</Dependencies>
   </PropertyGroup>
   <ItemGroup>
@@ -180,8 +180,6 @@
     <Compile Include="Fixers\CyclopsHelmHUDManagerFixer.cs" />
     <Compile Include="Fixers\IngameMenuFixer.cs" />
     <Compile Include="Fixers\MainMenuLoadButtonFixer.cs" />
-    <Compile Include="Fixers\MySignFixerComponent.cs" />
-    <Compile Include="Fixers\MyuGUI_SignInputFixer.cs" />
     <Compile Include="Fixers\StabilizerFixer.cs" />
     <Compile Include="Fixers\SubControlFixer.cs" />
     <Compile Include="Fixers\SubRootFixer.cs" />
@@ -197,8 +195,6 @@
     <Compile Include="Routing\SubRoutePlaying.cs" />
     <Compile Include="StylesHelper.cs" />
     <Compile Include="UI\CyclopsDockingModUI.cs" />
+    <Compile Include="CompatibilityAttributes.cs" />
   </ItemGroup>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /Y /I &quot;$(TargetPath)&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\CyclopsDockingMod\&quot;" />
-  </Target>
 </Project>
